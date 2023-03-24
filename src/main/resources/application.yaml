@@ -1,0 +1,46 @@
+server:
+  port: 8085
+spring:
+  profiles:
+    active: db-non-persist
+welcome:
+  message: The Spring Boot application and Rest Controller is working properly!
+token:
+  secret: ${SECRET_KEY}
+  validity_in_seconds: 3600
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: db-non-persist
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:dcbapp
+    username: user
+    password: password
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: db-persist
+  datasource:
+    url: jdbc:postgresql://localhost:5432/
+    username: username
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
