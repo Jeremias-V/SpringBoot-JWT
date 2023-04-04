@@ -1,22 +1,16 @@
 package com.psi.satrello.login.error;
 
-public class InvalidTokenException extends Exception {
-    public InvalidTokenException() {
-    }
+import lombok.Data;
+import org.springframework.http.HttpStatus;
 
-    public InvalidTokenException(String message) {
+@Data
+public class InvalidTokenException extends RuntimeException {
+
+    private HttpStatus status;
+
+    public InvalidTokenException(String message, HttpStatus status) {
         super(message);
+        this.status = status;
     }
 
-    public InvalidTokenException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public InvalidTokenException(Throwable cause) {
-        super(cause);
-    }
-
-    public InvalidTokenException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

@@ -7,24 +7,19 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-/**
- * User is a temporal entity, this should be mapped to a user model
- * with spring-data-jpa using the postgres-sql aws database.
- */
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(schema = "public", name = "user_login")
+public class UserLogin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "user_id")
     private UUID userId;
 
-
-    private String username;
+    @Column(name = "password")
     private String password;
 
 }

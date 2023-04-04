@@ -1,22 +1,16 @@
 package com.psi.satrello.login.error;
 
-public class InvalidCredentialsException extends Exception {
-    public InvalidCredentialsException() {
-    }
+import lombok.Data;
+import org.springframework.http.HttpStatus;
 
-    public InvalidCredentialsException(String message) {
+@Data
+public class InvalidCredentialsException extends RuntimeException {
+
+    private HttpStatus status;
+
+    public InvalidCredentialsException(String message, HttpStatus status) {
         super(message);
+        this.status = status;
     }
 
-    public InvalidCredentialsException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public InvalidCredentialsException(Throwable cause) {
-        super(cause);
-    }
-
-    public InvalidCredentialsException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

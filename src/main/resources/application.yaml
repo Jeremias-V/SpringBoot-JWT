@@ -2,7 +2,7 @@ server:
   port: 8085
 spring:
   profiles:
-    active: db-non-persist
+    active: db-persist
 welcome:
   message: The Spring Boot application and Rest Controller is working properly!
 token:
@@ -33,9 +33,9 @@ spring:
     activate:
       on-profile: db-persist
   datasource:
-    url: jdbc:postgresql://localhost:5432/
-    username: username
-    password: password
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     properties:
       hibernate:

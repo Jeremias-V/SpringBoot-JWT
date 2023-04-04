@@ -6,6 +6,7 @@ import com.psi.satrello.login.model.JwtResponseModel;
 import com.psi.satrello.login.security.TokenManager;
 import com.psi.satrello.login.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -39,7 +40,7 @@ public class JwtController {
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
-            throw new InvalidCredentialsException("Invalid username or password.");
+            throw new InvalidCredentialsException("Invalid username or password.", HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
             System.out.println(e);
         }

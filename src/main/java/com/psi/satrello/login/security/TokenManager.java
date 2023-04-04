@@ -29,7 +29,6 @@ public class TokenManager implements Serializable {
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                // 1000 milliseconds by the validity seconds
                 .setExpiration(new Date(System.currentTimeMillis() + tokenValidity * 1000))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
