@@ -6,11 +6,8 @@ import org.springframework.http.HttpStatus;
 @Data
 public class TokenExpiredException extends RuntimeException {
 
-    private HttpStatus status;
-
-    public TokenExpiredException(String message, HttpStatus status) {
+    public TokenExpiredException(String message) {
         super(message);
-        this.status = status;
     }
 
 }

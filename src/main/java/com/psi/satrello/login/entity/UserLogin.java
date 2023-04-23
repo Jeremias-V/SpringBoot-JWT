@@ -11,13 +11,16 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(schema = "public", name = "user_login")
+@Table(schema = "login", name = "user_login")
 public class UserLogin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id")
+    @Column(name = "login_id")
     private UUID userId;
+
+    @Column(name = "personal_id")
+    private String personalId;
 
     @Column(name = "password")
     private String password;

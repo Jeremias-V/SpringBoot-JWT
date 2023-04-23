@@ -17,8 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
-
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig {
@@ -32,6 +30,7 @@ public class WebSecurityConfig {
 
 
     private static final String[] WHITE_LIST_URLS = {
+            "/",
             "/login"
     };
 
@@ -54,7 +53,6 @@ public class WebSecurityConfig {
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers(WHITE_LIST_URLS).permitAll()
-                .requestMatchers(toH2Console()).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().sameOrigin()

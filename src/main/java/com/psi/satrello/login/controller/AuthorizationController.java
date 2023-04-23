@@ -22,7 +22,6 @@ public class AuthorizationController {
     public ResponseEntity<Map<String, String>> authorizationFunction(@RequestHeader("Authorization") String bearerToken){
         final String token = bearerToken.substring(7);
         HashMap<String, String> json = new HashMap<>();
-        json.put("message", "Authorized");
         json.put("personal_id", tokenManager.getUserNameFromToken(token));
         return new ResponseEntity<>(json, HttpStatus.OK);
     }

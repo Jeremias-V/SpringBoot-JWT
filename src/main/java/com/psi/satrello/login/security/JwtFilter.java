@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,14 +42,14 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
                 username = tokenManager.getUserNameFromToken(token);
             } catch (IllegalArgumentException e) {
-                throw new InvalidTokenException("The token is not valid.", HttpStatus.UNAUTHORIZED);
+                throw new InvalidTokenException("The token is not valid.");
             } catch (ExpiredJwtException e) {
-                throw new TokenExpiredException("The JWT token has expired.", HttpStatus.UNAUTHORIZED);
+                throw new TokenExpiredException("The JWT token has expired.");
             }
         } else {
             throw new InvalidTokenException(
                     "Bearer string not found in Token, " +
-                    "try 'Authorization: Bearer <Token>'", HttpStatus.BAD_REQUEST);
+                    "try 'Authorization: Bearer <Token>'");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -71,6 +70,6 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String url = request.getRequestURI();
-        return url.equals("/login");
+        return url.equals("/login") || url.equals("/");
     }
 }

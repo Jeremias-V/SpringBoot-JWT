@@ -6,11 +6,8 @@ import org.springframework.http.HttpStatus;
 @Data
 public class InvalidCredentialsException extends RuntimeException {
 
-    private HttpStatus status;
-
-    public InvalidCredentialsException(String message, HttpStatus status) {
+    public InvalidCredentialsException(String message) {
         super(message);
-        this.status = status;
     }
 
 }
