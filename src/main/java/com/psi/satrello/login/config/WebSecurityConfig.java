@@ -31,7 +31,8 @@ public class WebSecurityConfig {
 
     private static final String[] WHITE_LIST_URLS = {
             "/",
-            "/login"
+            "/login",
+            "/role/**"
     };
 
     @Bean

@@ -70,6 +70,6 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String url = request.getRequestURI();
-        return url.equals("/login") || url.equals("/");
+        return url.equals("/login") || url.equals("/") || url.matches("^/role/\\S+");
     }
 }

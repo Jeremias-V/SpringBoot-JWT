@@ -1,6 +1,7 @@
 package com.psi.satrello.login.controller;
 
 import com.psi.satrello.login.security.TokenManager;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Slf4j
 public class AuthorizationController {
 
     @Autowired
@@ -22,7 +24,9 @@ public class AuthorizationController {
     public ResponseEntity<Map<String, String>> authorizationFunction(@RequestHeader("Authorization") String bearerToken){
         final String token = bearerToken.substring(7);
         HashMap<String, String> json = new HashMap<>();
-        json.put("personal_id", tokenManager.getUserNameFromToken(token));
+        String username = tokenManager.getUserNameFromToken(token);
+        log.info("User " + username + " is authorized.");
+        json.put("personalId", username);
         return new ResponseEntity<>(json, HttpStatus.OK);
     }
 

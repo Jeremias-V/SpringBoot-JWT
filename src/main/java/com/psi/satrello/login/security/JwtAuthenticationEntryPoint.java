@@ -20,6 +20,6 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getOutputStream().println("{ \"message\": \"Current JWT token is not valid.\" }");
+        response.getOutputStream().println("{ \"message\": \"You're not authorized to access this resource.\" }");
     }
 }
